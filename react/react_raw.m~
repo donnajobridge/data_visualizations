@@ -168,14 +168,12 @@ for i = 1:numpics
                grouparray(i,5) = bt1array(j,2);
                grouparray(i,6) = bt1array(j,3);
                grouparray(i,11) = bt1array(j,4);
-               grouparray(i,14) = bt1array(j,5);
                
             end   
             if grouparray(i,1) == bt2array(j,1)
                grouparray(i,9) = bt2array(j,2);
                grouparray(i,10) = bt2array(j,3);   
                grouparray(i,13) = bt2array(j,4);   
-               grouparray(i,16) = bt2array(j,5);   
 
             end
 %             if j <= reactpics;
@@ -190,7 +188,6 @@ for i = 1:numpics
                    grouparray(i,7) = rarray(j,2);
                    grouparray(i,8) = rarray(j,3);
                    grouparray(i,12) = rarray(j,4);
-                   grouparray(i,15) = rarray(j,5);
                    
                 end 
              end
@@ -200,7 +197,7 @@ end
 
 fname = 'react_raw.csv';
 % fid = fopen(fname, 'w');
-% fprintf(fid, '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s', 'sub', 'cond', 'x', 'y', 'x1', 'y1', 'x2', 'y2', 'x3', 'y3', 't1_rt', 't2_rt', 't3_rt', 't1_order', 't2_order', 't3_order');
+% fprintf(fid, '%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s', 'sub', 'cond', 'x', 'y', 'x1', 'y1', 'x2', 'y2', 'x3', 'y3', 't1_rt', 't2_rt', 't3_rt');
 fid = fopen(fname, 'a');
 
 
