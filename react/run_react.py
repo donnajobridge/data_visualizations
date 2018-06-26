@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from react_parse import distance, get_quad, melt_distances
-
+from react_figs import make_layered_hist
 
 #read in react file and make adjustments
 react=pd.read_table('data/react_raw.csv', index_col=False)
@@ -37,3 +37,6 @@ t3_list=['t3_orig_dist', 't3_t1_dist', 't3_t2_dist']
 
 t2=melt_distances(react, t2_list, 't2')
 t3=melt_distances(react, t3_list, 't3')
+
+make_layered_hist(react, t2_list, 'Day2')
+make_layered_hist(react, t3_list, 'Day3')
