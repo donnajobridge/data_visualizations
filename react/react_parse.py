@@ -23,13 +23,10 @@ def get_quad(array, x, y, new_col):
     return array
 
 
-<<<<<<< HEAD
-def melt_distances(means, condlist, day):
-=======
+
 def melt_distances(array, condlist, day):
     means=pd.DataFrame(array.groupby(['sub'])[condlist].mean())
     means.reset_index(inplace=True)
->>>>>>> 3d4fa542af18c1eb83ac59f51122de37b4a45030
     tidy_dists=means.melt(id_vars=['sub'], value_vars=condlist,
               var_name=day +'_measure', value_name=day+'_dist')
     return tidy_dists
