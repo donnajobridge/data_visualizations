@@ -2,7 +2,6 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-<<<<<<< HEAD
 from cxt_parse import clean_cxt_data, get_response_counts, get_prop
 from cxt_figs import get_cxt_figs
 

@@ -20,9 +20,9 @@ def get_emo_scores(emo):
         hprecision=precision_score(hap['old/new'], hap['response code'])
         hf1=f1_score(hap['old/new'], hap['response code'])
 
-        scores={'sub':sub, 'affect':'sad','up_in':upin, 'recall':srecall, 'precision':sprecision, 'f1':sf1}
+        scores={'sub':sub, 'affect':'Sad','up_in':upin, 'Recall':srecall, 'Precision':sprecision, 'F1':sf1}
         sub_score_list.append(scores)
-        scores={'sub':sub, 'affect':'happy','up_in':upin, 'recall':hrecall, 'precision':hprecision, 'f1':hf1}
+        scores={'sub':sub, 'affect':'Happy','up_in':upin, 'Recall':hrecall, 'Precision':hprecision, 'F1':hf1}
         sub_score_list.append(scores)
 
     emo_scores=pd.DataFrame(sub_score_list)
@@ -33,16 +33,16 @@ def get_emo_wide(emo):
     sub_wide=[]
     for sub, ldf in emo.groupby(['Subj']):
         sad=ldf[ldf['affect'].isin(['s'])]
-        sad_up=sad[sad['up/in'].isin(['up'])]
-        sad_in=sad[sad['up/in'].isin(['in'])]
+        sad_up=sad[sad['up/in'].isin(['Upright'])]
+        sad_in=sad[sad['up/in'].isin(['Inverted'])]
 
         hap=ldf[ldf['affect'].isin(['h'])]
-        hap_up=hap[hap['up/in'].isin(['up'])]
-        hap_in=hap[hap['up/in'].isin(['in'])]
+        hap_up=hap[hap['up/in'].isin(['Upright'])]
+        hap_in=hap[hap['up/in'].isin(['Inverted'])]
 
         lure=ldf[ldf['affect'].isin(['l'])]
-        lure_up=lure[lure['up/in'].isin(['up'])]
-        lure_in=lure[lure['up/in'].isin(['in'])]
+        lure_up=lure[lure['up/in'].isin(['Upright'])]
+        lure_in=lure[lure['up/in'].isin(['Inverted'])]
 
         sub_dict={'sub':sub, 'sad_up_hit':sad_up['accuracy'].mean(), 'sad_in_hit':sad_in['accuracy'].mean(),
               'hap_up_hit':hap_up['accuracy'].mean(), 'hap_in_hit':hap_in['accuracy'].mean(),

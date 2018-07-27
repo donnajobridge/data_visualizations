@@ -6,6 +6,7 @@ from emo_figs import emo_confusion, make_bar, make_line
 emo=pd.read_csv('emo.csv')
 accuracy=emo['response code']==emo['old/new']
 emo['accuracy']=accuracy.map({True:1, False:0})
+emo['up/in']=emo['up/in'].map({'in':'Inverted', 'up':'Upright'})
 
 ## create data frames for plotting
 emo_scores=get_emo_scores(emo)
