@@ -32,13 +32,18 @@ get_quad(react, 'x2', 'y2', 'loc2_quad')
 get_quad(react, 'x3', 'y3', 'loc3_quad')
 
 #use lists to make tidy arrays of each distance variable
-t2_list=['t2_orig_dist', 't2_t1_dist']
-t3_list=['t3_orig_dist', 't3_t1_dist', 't3_t2_dist']
+t2_list = ['t2_orig_dist', 't2_t1_dist']
+t3_list = ['t3_orig_dist', 't3_t1_dist', 't3_t2_dist']
+orig_list=['t1_orig_dist', 't2_orig_dist', 't3_orig_dist']
 
+update_colors = ['midnightblue', 'royalblue', 'darkturquoise']
+forget_colors = ['darkorchid', 'mediumspringgreen', 'midnightblue']
 
-t2=melt_distances(react, t2_list, 't2')
-t3=melt_distances(react, t3_list, 't3')
+t2 = melt_distances(react, t2_list, 't2')
+t3 = melt_distances(react, t3_list, 't3')
+orig = melt_distances(react, orig_list, 'orig')
 
 
 make_layered_hist(react, t2_list, 'Day2')
-make_layered_hist(react, t3_list, 'Day3')
+make_layered_hist(react, t3_list, 'Day3', update_colors)
+make_layered_hist(react, orig_list, 'Day3', forget_colors)

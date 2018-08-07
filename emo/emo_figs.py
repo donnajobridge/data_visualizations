@@ -24,12 +24,12 @@ def emo_confusion(emo):
 
 def make_bar(emo_scores):
     for measure in ['F1', 'Precision', 'Recall']:
-        bar=sns.barplot(x='up_in', y=measure, hue='affect', data=emo_scores, palette='Pastel1')
+        bar=sns.barplot(x='up_in', y=measure, hue='affect', data=emo_scores, palette='GnBu_d')
         bar.set_xlabel('Orientation', fontsize=20)
         bar.set_ylabel(measure+' Score', fontsize=20)
         bar.tick_params(labelsize=16)
         plt.title(measure, fontsize=30)
-        plt.legend(fontsize=12)
+        plt.legend(fontsize=16)
         plt.gca().legend().set_title('')
         barfig=bar.get_figure()
         barfig.savefig('figs/emo_bar_'+measure+'.png')
@@ -37,12 +37,12 @@ def make_bar(emo_scores):
 
 def make_line(emo_scores):
     for measure in ['F1', 'Precision', 'Recall']:
-        line=sns.pointplot(x='up_in', y=measure, hue='affect', jitter=True, data=emo_scores, palette='Pastel1')
+        line=sns.pointplot(x='up_in', y=measure, hue='affect', jitter=True, data=emo_scores, palette='GnBu_d')
         line.set_xlabel('Orientation', fontsize=20)
         line.set_ylabel(measure+' Score', fontsize=20)
         line.tick_params(labelsize=16)
         plt.title(measure, fontsize=30)
-        plt.legend(fontsize=12)
+        plt.legend(fontsize=16)
         plt.gca().legend().set_title('')
         linefig=line.get_figure()
         linefig.savefig('figs/emo_line_'+measure+'.png')

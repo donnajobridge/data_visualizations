@@ -4,12 +4,12 @@ from matplotlib.patches import Rectangle
 import seaborn as sns
 
 
-def make_layered_hist(array, condlist, condDay):
+def make_layered_hist(array, condlist, condDay, colorlist):
     fig, ax = plt.subplots()
-    for cond in condlist:
-        hist_kde=sns.distplot(array[cond], ax=ax, label=cond)
+    for cond, color in zip(condlist, colorlist):
+        kde=sns.kdeplot(array[cond], ax=ax, label=cond, color=color)
         ax.legend()
         ax.set_xlabel('Distance Error (pixels)')
-    hist_kde=hist_kde.get_figure()
-    hist_kde.savefig('figs/react_hist_kde' + condDay + '.png')
+    kde=kde.get_figure()
+    kde.savefig('figs/react_kde' + condDay + '.png')
     plt.clf()

@@ -9,8 +9,9 @@ rcParams.update({'figure.autolayout': True})
 
 
 def get_cxt_figs(props_tidy):
+    props_tidy['cond']=props_tidy['cond'].map({'act':'Active', 'pas':'Passive'})
     swarmfig=sns.swarmplot(x='locs', y='prop', hue='cond',
-                   data=props_tidy, palette='Pastel1')
+                   data=props_tidy, palette='Paired')
     plt.xticks((0,1,2),['Original', 'Updated', 'New'])
     swarmfig.set_ylabel('Proportion of Responses', fontsize=20)
     swarmfig.set_xlabel('Location Selection', fontsize=20)
@@ -21,8 +22,8 @@ def get_cxt_figs(props_tidy):
     # ax = swarmfig.axes.flatten()
     # ax[0].set_title('Active')
     # ax[1].set_title('Passive')
-    swarmfig._legend.text[0].set_text('Active')
-    swarmfig._legend.text[1].set_text('Passive')
+    # swarmfig._legend.text[0].set_text('Active')
+    # swarmfig._legend.text[1].set_text('Passive')
     # swarmfig._legend.set_title('Location')
 
     swarmfig=swarmfig.get_figure()
@@ -30,7 +31,7 @@ def get_cxt_figs(props_tidy):
     plt.clf()
 
     viosplit=sns.violinplot(x='locs', y='prop', hue='cond', split=True,
-    data=props_tidy[props_tidy['locs']!=3], palette='Pastel1')
+    data=props_tidy[props_tidy['locs']!=3], palette='Paired')
     plt.xticks((0,1),['Original', 'Update'])
     plt.ylabel('Proportion of Responses')
     plt.xlabel('Location Selection')
