@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 
-def get_subids(behavestring):
+def get_subids(behavepath):
     subfiles="*study"
     sublist = []
     for filepathobj in behavepath.glob(subfiles):
@@ -16,9 +16,9 @@ def get_subids(behavestring):
 def set_behavior_path(sub, behavestring):
     extra='study'
     behaveobj=[behavestring+sub+extra]
-    behavepath=Path(behaveobj[0])
-    behavepath.exists()
-    return behavepath
+    behavefilepath=Path(behaveobj[0])
+    behavefilepath.exists()
+    return behavefilepath
 
 def read_behave_file(filepath):
     """read in behavearray, turn into DataFrame and delete extra columns"""
