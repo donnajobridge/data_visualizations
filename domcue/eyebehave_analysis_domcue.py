@@ -6,6 +6,8 @@ def make_timeseries(subcleandf, condnum):
     studytimearray = pd.DataFrame(index=range(4500), columns=range(0,161))
     restudytimearray = pd.DataFrame(index=range(4500), columns=range(0,161))
     fix = subcleandf[(subcleandf['event']=='EFIX') & (subcleandf['cond']==condnum)]
+    offmask = (fix['startloc'] == 'offscreen')
+    fix.loc[offmask, 'startloc'] = np.nan
     trialcount = 0
     for groups, ldf in fix.groupby(by=['trialnum', 'phase']):
         trial, phase = groups
@@ -28,10 +30,13 @@ def get_timeseries_props(timearray):
     alltot = timearray.count(axis=1)
     props['total_fix'] = alltot
 
-    objlist = ['obj1start', 'obj2start', 'obj3start', 'screen', 'offscreen']
+    objlist = ['obj1start', 'obj2start', 'obj3start', 'screen']
 
     for loc in objlist:
         objset = timearray[timearray==loc].count(axis=1)
-        props[loc] = objset/numtrials
+        props[loc] = objset/alltot
+
+    props.reset_index(inplace=True)
+    props.rename(columns={'index':'time'}, inplace=True)
+
     return props
-    
