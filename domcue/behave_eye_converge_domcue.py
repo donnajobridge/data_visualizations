@@ -116,4 +116,9 @@ def eyedict_backto_df(new_post_events):
     corrected_eyedf=corrected_eyedf[old_blink_mask]
     corrected_eyedf.sort_values(['block','trialnum','start'])
     corrected_eyedf=corrected_eyedf.reset_index(drop=True)
+
+    corrected_eyedf['manip_accuracy'] = (corrected_eyedf['dom_resp'] == corrected_eyedf['loc1'])
+    corrected_eyedf['all_accuracy'] = ((corrected_eyedf['manip_accuracy']) &
+                              (corrected_eyedf['recog_accuracy']))  
+
     return corrected_eyedf
