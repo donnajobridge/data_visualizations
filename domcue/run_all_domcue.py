@@ -16,8 +16,17 @@ subids = get_subids(behavepath)
 
 for sub in subids:
     # process behavior
-    behavefilepath = set_behavior_path(sub, behavestring)
-    behavearray = read_behave_file(behavefilepath)
+    studyfilepath = set_behavior_path(sub, behavestring, 'study')
+    studyarray = read_study_file(studyfilepath)
+
+    testfilepath = set_behavior_path(sub, behavestring, 'test')
+    testarray = read_test_file(testfilepath)
+
+
+    # merge study & test
+    behavearray = merge_study_test(studyarray, testarray)
+
+    # adjust coords
     behavearray = apply_adjust_pres_coords(behavearray)
 
     # get eye files and process

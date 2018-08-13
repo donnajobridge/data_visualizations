@@ -4,7 +4,8 @@ import pandas as pd
 def eye_behave_combo(eyearray,behavearray):
     eyebehave=eyearray.copy()
     eyecols=eyebehave.columns.tolist()
-    behavecols=['x1','y1','x2','y2','x3','y3','cond', 'loc1', 'dom_resp', 'studytrial']
+    behavecols=['x1','y1','x2','y2','x3','y3','cond', 'loc1', 'dom_resp', 'studytrial',
+                'recog_accuracy', 'recog_loc_accuracy']
     allcols=eyecols+behavecols
     eyebehave=eyebehave.reindex(columns=allcols)
     order_col='studytrial'
@@ -18,6 +19,7 @@ def eye_behave_combo(eyearray,behavearray):
 
         eyebehave.loc[eyetrialevents]=eyetrial
     return eyebehave
+
 
 def dist(array,x1,y1,x2,y2):
     """ distance formula for columns of coords"""
