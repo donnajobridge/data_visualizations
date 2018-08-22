@@ -9,8 +9,9 @@ from matplotlib import rcParams
 rcParams.update({'figure.autolayout': True})
 
 def make_rencode_figs(dprimedf, measure_array, conf):
-    for fig_type, myplot in [('bar', sns.barplot), ('swarm', sns.swarmplot),
-    ('box', sns.boxplot)]:
+    # for fig_type, myplot in [('bar', sns.barplot), ('swarm', sns.swarmplot),
+    # ('box', sns.boxplot)]:
+    for fig_type, myplot in [('swarm', sns.swarmplot), ('box', sns.boxplot)]:
         for measure in measure_array:
             ax=myplot(x='cond', y=measure,
             data=dprimedf, palette="colorblind")
@@ -21,7 +22,7 @@ def make_rencode_figs(dprimedf, measure_array, conf):
             ax.set_ylabel(measure, fontsize=20)
             plt.title('Recognition Performance', fontsize=30)
             fig=ax.get_figure()
-            fig.savefig('figs/rencode_'+fig_type+measure+conf+'_.png')
+            fig.savefig('figs/rencode_'+fig_type+measure+conf+'.png')
             plt.clf()
 
 def make_cm_matrix(rencode):
