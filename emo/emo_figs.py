@@ -23,7 +23,7 @@ def emo_confusion(emo):
             plt.clf()
 
 def make_bar(emo_scores):
-    for measure in ['F1', 'Precision', 'Recall']:
+    for measure in ['F1']:
         bar=sns.barplot(x='up_in', y=measure, hue='affect', data=emo_scores, palette='GnBu_d')
         bar.set_xlabel('Orientation', fontsize=20)
         bar.set_ylabel(measure+' Score', fontsize=20)
@@ -36,7 +36,7 @@ def make_bar(emo_scores):
         plt.clf()
 
 def make_line(emo_scores):
-    for measure in ['F1', 'Precision', 'Recall']:
+    for measure in ['Precision', 'Recall']:
         line=sns.pointplot(x='up_in', y=measure, hue='affect', jitter=True, data=emo_scores, palette='GnBu_d')
         line.set_xlabel('Orientation', fontsize=20)
         line.set_ylabel(measure+' Score', fontsize=20)
