@@ -16,7 +16,7 @@ distance(react, 'x', 'y', 'x1', 'y1', 't1_orig_dist')
 distance(react, 'x', 'y', 'x2', 'y2', 't2_orig_dist')
 distance(react, 'x1', 'y1', 'x2', 'y2', 't2_t1_dist')
 distance(react, 'x', 'y', 'x3', 'y3', 't3_orig_dist')
-distance(react, 'x', 'y', 'x3', 'y3', 't3_t1_dist')
+distance(react, 'x1', 'y1', 'x3', 'y3', 't3_t1_dist')
 distance(react, 'x2', 'y2', 'x3', 'y3', 't3_t2_dist')
 
 #add distance features (from center)
@@ -36,6 +36,12 @@ t2_list = ['t2_orig_dist', 't2_t1_dist']
 t3_list = ['t3_orig_dist', 't3_t1_dist', 't3_t2_dist']
 orig_list=['t1_orig_dist', 't2_orig_dist', 't3_orig_dist']
 
+# names to use as legend labels
+t2labels = ['Original Location', 'Day 1 Test Location']
+uplabels = ['Original Location', 'Day 1 Test Location', 'Day 2 Test Location']
+t3labels=['Day 1 Test', 'Day 2 Test', 'Day 3 Test']
+
+day2_colors = ['mediumspringgreen', 'darkorchid']
 update_colors = ['midnightblue', 'royalblue', 'darkturquoise']
 forget_colors = ['darkorchid', 'mediumspringgreen', 'midnightblue']
 
@@ -44,6 +50,6 @@ t3 = melt_distances(react, t3_list, 't3')
 orig = melt_distances(react, orig_list, 'orig')
 
 
-make_layered_hist(react, t2_list, 'Day2')
-make_layered_hist(react, t3_list, 'Day3', update_colors)
-make_layered_hist(react, orig_list, 'Day3', forget_colors)
+make_layered_hist(react, t2_list, 'Day2', day2_colors, t2labels)
+make_layered_hist(react, orig_list, 'Forgetting', forget_colors, t3labels)
+make_layered_hist(react, t3_list, 'Updating', update_colors, uplabels)
