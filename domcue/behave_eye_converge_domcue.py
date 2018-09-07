@@ -5,7 +5,7 @@ def eye_behave_combo(eyearray,behavearray):
     eyebehave=eyearray.copy()
     eyecols=eyebehave.columns.tolist()
     behavecols=['x1','y1','x2','y2','x3','y3','cond', 'loc1', 'dom_resp', 'studytrial',
-                'recog_accuracy', 'recog_loc_accuracy']
+                'recog_accuracy', 'recog_loc_accuracy', 'cuecond']
     allcols=eyecols+behavecols
     eyebehave=eyebehave.reindex(columns=allcols)
     order_col='studytrial'
@@ -116,9 +116,10 @@ def eyedict_backto_df(new_post_events):
     corrected_eyedf=corrected_eyedf[old_blink_mask]
     corrected_eyedf.sort_values(['block','trialnum','start'])
     corrected_eyedf=corrected_eyedf.reset_index(drop=True)
-
+    corrected_eyedf['cuecond']=corrected_eyedf['cuecond'].map({1:1, 2:0})
     corrected_eyedf['manip_accuracy'] = (corrected_eyedf['dom_resp'] == corrected_eyedf['loc1'])
     corrected_eyedf['all_accuracy'] = ((corrected_eyedf['manip_accuracy']) &
-                              (corrected_eyedf['recog_accuracy']))  
+                              (corrected_eyedf['recog_accuracy']))
+    corrected_eyedf['dom_accuracy'] = ((corrected_eyedf['all_accuracy']) & (corrected_eyedf['cuecond']))
 
     return corrected_eyedf

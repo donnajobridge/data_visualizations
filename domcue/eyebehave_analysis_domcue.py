@@ -15,7 +15,7 @@ def make_timeseries(subcleandf, condnum):
             start = trialinfo['start']
             end = trialinfo['end']
             loc = trialinfo['startloc']
-            accuracy = trialinfo['all_accuracy']
+            accuracy = trialinfo['dom_accuracy']
             if not accuracy:
                 continue
             if phase == 'study':
@@ -44,7 +44,7 @@ def get_timeseries_props(timearray, sub):
     props['sub'] = sub
     return props
 
-def get_timeseries_allsubs(subids):
+def get_timeseries_allsubs(subids, behavestring):
     # import each subs data file, run timeseries analysis and then append
     actstudypropAll = pd.DataFrame()
     actrestudypropAll = pd.DataFrame()

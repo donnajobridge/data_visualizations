@@ -21,13 +21,13 @@ def get_subs_from_eyebehave(behavestring):
 
 subids = get_subs_from_eyebehave(behavestring)
 
-if makefiles ==1:
+if makefiles ==0:
 # get prop timeseries for all subs & save master arrays
-    actstudypropAll, actrestudypropAll, passtudypropAll, pasrestudypropAll = get_timeseries_allsubs(subids)
-    actstudypropAll.to_csv('data/actstudypropAll.csv')
-    actrestudypropAll.to_csv('data/actrestudypropAll.csv')
-    passtudypropAll.to_csv('data/passtudypropAll.csv')
-    pasrestudypropAll.to_csv('data/pasrestudypropAll.csv')
+    actstudypropAll, actrestudypropAll, passtudypropAll, pasrestudypropAll = get_timeseries_allsubs(subids, behavestring)
+    actstudypropAll.to_csv('data/actstudyprop_dom.csv')
+    actrestudypropAll.to_csv('data/actrestudyprop_dom.csv')
+    passtudypropAll.to_csv('data/passtudyprop_dom.csv')
+    pasrestudypropAll.to_csv('data/pasrestudyprop_dom.csv')
 else:
     # just load the existing data:
     actstudypropAll = pd.read_csv('data/actstudypropAll.csv')
@@ -60,6 +60,10 @@ condlist = ['Active', 'Passive']
 
 make_layered_lineplot(restudylist, condlist, 'obj1start', colorlist, 'restudy')
 make_layered_lineplot(restudylist, condlist, 'nondom', colorlist, 'restudy')
+make_layered_lineplot(restudylist, condlist, 'screen', colorlist, 'restudy')
+make_layered_lineplot(restudylist, condlist, 'obj3start', colorlist, 'restudy')
 
 make_layered_lineplot(difflist, condlist, 'obj1start', colorlist, 'diff')
 make_layered_lineplot(difflist, condlist, 'nondom', colorlist, 'diff')
+make_layered_lineplot(difflist, condlist, 'screen', colorlist, 'diff')
+make_layered_lineplot(difflist, condlist, 'obj3start', colorlist, 'diff')
