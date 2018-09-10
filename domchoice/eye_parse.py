@@ -22,6 +22,7 @@ def get_eye_files(subids,eyepath):
             subinfo.append(subdict)
 
     masterdf=pd.DataFrame(subinfo).sort_values(by=["subject","block"])
+#     print(masterdf.head())
     masterdf=masterdf[["subject","block","fname"]]
     masterdf = masterdf[~masterdf['fname'].str.contains('i')]
     masterdf.index=range(len(masterdf))
@@ -54,18 +55,22 @@ def parse_eye_line(eye_sub, eyestring):
     print(eyestring)
     studyphase = False
     for block,fname,subject in zip(blocks,fnames,subjects):
+        blocktrial=0
         path_file=eyestring+fname
-        startcount=0
         p=Path(path_file)
         with p.open() as f:
             for line in f:
                 if "studypre" in line:
-                    trialnum = trialnum+1
+                    trialnum += 1
                     studyphase = True
                 elif "studypost" in line:
                     studyphase = False
+                elif "ERROR MESSAGES LOST" in line:
+                    studyphase=True
+                    trialnum += 1
 
                 if "START" in line:
+
                     startline=line.split()
                     starttime=int(startline[1])
 
@@ -77,8 +82,6 @@ def parse_eye_line(eye_sub, eyestring):
                         study.append(newline)
                     else:
                         restudy.append(newline)
-        print(block, fname, subject)
-        print(trialnum,block)
     return study, restudy
 
 

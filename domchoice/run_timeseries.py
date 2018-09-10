@@ -8,21 +8,21 @@ behavestring = 'data/'
 
 subids = get_subs_from_eyebehave(behavestring)
 
-makefiles = 1
+makefiles = 0
 
 if makefiles ==0:
     # create prop timeseries for all subs & save master arrays
     actstudypropAll, actrestudypropAll, passtudypropAll, pasrestudypropAll = get_timeseries_allsubs(subids, behavestring)
-    actstudypropAll.to_csv('data/actstudyprop_dom.csv')
-    actrestudypropAll.to_csv('data/actrestudyprop_dom.csv')
-    passtudypropAll.to_csv('data/passtudyprop_dom.csv')
-    pasrestudypropAll.to_csv('data/pasrestudyprop_dom.csv')
+    actstudypropAll.to_csv('data/actstudyprop.csv')
+    actrestudypropAll.to_csv('data/actrestudyprop.csv')
+    passtudypropAll.to_csv('data/passtudyprop.csv')
+    pasrestudypropAll.to_csv('data/pasrestudyprop.csv')
 else:
     # just load the existing data:
-    actstudypropAll = pd.read_csv('data/actstudyprop_dom.csv')
-    actrestudypropAll = pd.read_csv('data/actrestudyprop_dom.csv')
-    passtudypropAll = pd.read_csv('data/passtudyprop_dom.csv')
-    pasrestudypropAll = pd.read_csv('data/pasrestudyprop_dom.csv')
+    actstudypropAll = pd.read_csv('data/actstudyprop.csv')
+    actrestudypropAll = pd.read_csv('data/actrestudyprop.csv')
+    passtudypropAll = pd.read_csv('data/passtudyprop.csv')
+    pasrestudypropAll = pd.read_csv('data/pasrestudyprop.csv')
 
 
 actstudyprop = downsample_timeseries(actstudypropAll, 100)
@@ -33,16 +33,16 @@ pasrestudyprop = downsample_timeseries(pasrestudypropAll, 100)
 allarrays = [actstudyprop, actrestudyprop, passtudyprop, pasrestudyprop]
 
 for array in allarrays:
-    array['nondom'] = array['obj2start'] + array['obj3start']
+    array['nondom'] = array['test_objstart'] + array['other_objstart']
 
-objlist = ['obj1start', 'obj2start', 'obj3start', 'screen', 'nondom']
+objlist = ['manip_objstart', 'test_objstart', 'other_objstart', 'screen', 'nondom']
 
 
 colorlist = ['midnightblue', 'darkturquoise']
 restudylist = [actrestudyprop, pasrestudyprop]
 condlist = ['Active', 'Passive']
 
-make_layered_lineplot(restudylist, condlist, 'obj1start', colorlist, 'restudy')
+make_layered_lineplot(restudylist, condlist, 'manip_objstart', colorlist, 'restudy')
 make_layered_lineplot(restudylist, condlist, 'nondom', colorlist, 'restudy')
-make_layered_lineplot(restudylist, condlist, 'screen', colorlist, 'restudy')
-make_layered_lineplot(restudylist, condlist, 'obj3start', colorlist, 'restudy')
+make_layered_lineplot(restudylist, condlist, 'other_objstart', colorlist, 'restudy')
+make_layered_lineplot(restudylist, condlist, 'test_objstart', colorlist, 'restudy')

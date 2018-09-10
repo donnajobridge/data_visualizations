@@ -14,6 +14,8 @@ eyepath=Path(eyestring)
 subids = get_subids(behavepath)
 
 for sub in subids:
+    if sub == '918':
+        continue
     if int(sub) < 900:
         xmax = 1920/2
         ymax = 1080/2
@@ -27,14 +29,21 @@ for sub in subids:
 
     testfilepath = set_behavior_path(sub, behavestring, 'test')
     testarray = read_test_file(testfilepath)
-
     # merge study & test
     behavearray = merge_study_test(studyarray, testarray)
+ # adjust coords
+    behavearray = apply_adjust_pres_coords(behavearray,sub,xmax,ymax)
+# define manipulated object, tested object, and other object from obj1, obj2, obj3
+    alldomarray, alltestarray, allotherarray = define_obj_types(behavearray)
+# add in new object identities and remove old ones
+    print(sub)
+    print(behavearray.shape)
+    print(alldomarray.shape)
+    print(alltestarray.shape)
+    print(allotherarray.shape)
+    behavearray = edit_obj_ids(behavearray, alldomarray, alltestarray, allotherarray)
 
-    # adjust coords
-    behavearray = apply_adjust_pres_coords(behavearray, sub, xmax, ymax)
-
-# get eye files and process
+    # get eye files and process
     masterdf = get_eye_files(subids,eyepath)
     eye_sub = masterdf[masterdf['subject']==sub]
     study, restudy = parse_eye_line(eye_sub, eyestring)

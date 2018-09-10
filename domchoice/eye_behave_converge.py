@@ -5,8 +5,8 @@ import pandas as pd
 def eye_behave_combo(eyearray,behavearray):
     eyebehave=eyearray.copy()
     eyecols=eyebehave.columns.tolist()
-    behavecols=['x1','y1','x2','y2','x3','y3','cond', 'dom_accuracy', 'studytrial', 'testtrial',
-                'recog_accuracy', 'recog_loc_accuracy', 'cuecond']
+    behavecols=['manip_x','manip_y','test_x','test_y','other_x','other_y','cond', 'manip_accuracy', 'studytrial', 'testtrial',
+                'recog_accuracy', 'recog_loc_accuracy', 'manip_accuracy', 'cuecond']
     allcols=eyecols+behavecols
     eyebehave=eyebehave.reindex(columns=allcols)
     order_col='studytrial'
@@ -32,9 +32,9 @@ def dist(array,x1,y1,x2,y2):
 def calculate_dist(eyebehave,x1,y1,name):
     """ calculate distances for start and end eye locations"""
     for x in eyebehave:
-        distdict={'obj1':dist(eyebehave,x1,y1,'x1','y1'),
-                        'obj2':dist(eyebehave,x1,y1,'x2','y2'),
-                        'obj3':dist(eyebehave,x1,y1,'x3','y3')}
+        distdict={'manip_obj':dist(eyebehave,x1,y1,'manip_x','manip_y'),
+                        'test_obj':dist(eyebehave,x1,y1,'test_x','test_y'),
+                        'other_obj':dist(eyebehave,x1,y1,'other_x','other_y')}
 
     distarray=pd.DataFrame(distdict)
     col=distarray.columns.tolist()
@@ -118,7 +118,7 @@ def eyedict_backto_df(new_post_events):
     corrected_eyedf.sort_values(['block','trialnum','start'])
     corrected_eyedf=corrected_eyedf.reset_index(drop=True)
     corrected_eyedf['cuecond']=corrected_eyedf['cuecond'].map({1:1, 2:0})
-    corrected_eyedf['all_accuracy'] = ((corrected_eyedf['dom_accuracy']) &
+    corrected_eyedf['all_accuracy'] = ((corrected_eyedf['manip_accuracy']) &
                               (corrected_eyedf['recog_accuracy']))
     corrected_eyedf['dom_accuracy'] = ((corrected_eyedf['all_accuracy']) & (corrected_eyedf['cuecond']))
 

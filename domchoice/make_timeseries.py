@@ -44,7 +44,7 @@ def get_timeseries_props(timearray, sub):
     props = pd.DataFrame(index=range(timearray.shape[0]))
     alltot = timearray.count(axis=1)
     props['total_fix'] = alltot
-    objlist = ['obj1start', 'obj2start', 'obj3start', 'screen']
+    objlist = ['manip_objstart', 'test_objstart', 'other_objstart', 'screen']
 
     for loc in objlist:
         objset = timearray[timearray==loc].count(axis=1)
