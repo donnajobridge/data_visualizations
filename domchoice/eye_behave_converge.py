@@ -118,8 +118,10 @@ def eyedict_backto_df(new_post_events):
     corrected_eyedf.sort_values(['block','trialnum','start'])
     corrected_eyedf=corrected_eyedf.reset_index(drop=True)
     corrected_eyedf['cuecond']=corrected_eyedf['cuecond'].map({1:1, 2:0})
-    corrected_eyedf['all_accuracy'] = ((corrected_eyedf['manip_accuracy']) &
+    corrected_eyedf['recog+manip_accuracy'] = ((corrected_eyedf['manip_accuracy']) &
                               (corrected_eyedf['recog_accuracy']))
-    corrected_eyedf['dom_accuracy'] = ((corrected_eyedf['all_accuracy']) & (corrected_eyedf['cuecond']))
+    corrected_eyedf['recog+manip+loc_accuracy'] = ((corrected_eyedf['manip_accuracy']) &
+                              (corrected_eyedf['recog_accuracy']) & (corrected_eyedf['recog_loc_accuracy']))
+    corrected_eyedf['dom_all_accuracy'] = ((corrected_eyedf['recog+manip+loc_accuracy']) & (corrected_eyedf['cuecond']))
 
     return corrected_eyedf
