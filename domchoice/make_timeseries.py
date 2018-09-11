@@ -26,7 +26,7 @@ def make_timeseries(subcleandf, condnum):
             start = trialinfo['start']
             end = trialinfo['end']
             loc = trialinfo['startloc']
-            accuracy = trialinfo['all_accuracy']
+            accuracy = trialinfo['recog+manip+loc_accuracy']
             if not accuracy:
                 continue
             if phase == 'study':

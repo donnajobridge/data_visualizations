@@ -13,10 +13,10 @@ makefiles = 0
 if makefiles ==0:
     # create prop timeseries for all subs & save master arrays
     actstudypropAll, actrestudypropAll, passtudypropAll, pasrestudypropAll = get_timeseries_allsubs(subids, behavestring)
-    actstudypropAll.to_csv('data/actstudyprop.csv')
-    actrestudypropAll.to_csv('data/actrestudyprop.csv')
-    passtudypropAll.to_csv('data/passtudyprop.csv')
-    pasrestudypropAll.to_csv('data/pasrestudyprop.csv')
+    actstudypropAll.to_csv('data/actstudyprop_allacc.csv')
+    actrestudypropAll.to_csv('data/actrestudyprop_allacc.csv')
+    passtudypropAll.to_csv('data/passtudyprop_allacc.csv')
+    pasrestudypropAll.to_csv('data/pasrestudyprop_allacc.csv')
 else:
     # just load the existing data:
     actstudypropAll = pd.read_csv('data/actstudyprop.csv')
