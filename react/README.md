@@ -9,4 +9,4 @@ The forgetting KDE plot shows the distance objects were placed from the original
 The updating KDE plot shows memory on the final Day 3 test. Distances with respect to the original location, the Day 1 test location, and the Day 2 test location are plotted.
 
 *How to run:*
-To generate figures from behavioral data, go to terminal in cxtupdate directory. From there, run "python run_react.py"
+To generate figures from behavioral data, go to terminal in cxtupdate directory. From there, run `python run_react.py`

@@ -15,4 +15,4 @@ False alarm rate
 *d* prime
 
 *How to run:*
-To generate figures from behavioral data, go to terminal in the rencode directory. From there, run "python run_rencode.py"
+To generate figures from behavioral data, go to terminal in the rencode directory. From there, run `python run_rencode.py`

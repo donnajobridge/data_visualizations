@@ -8,21 +8,26 @@ behavestring = 'data/'
 
 subids = get_subs_from_eyebehave(behavestring)
 
-makefiles = 0
+makefiles = 1
 
 if makefiles ==0:
     # create prop timeseries for all subs & save master arrays
     actstudypropAll, actrestudypropAll, passtudypropAll, pasrestudypropAll = get_timeseries_allsubs(subids, behavestring)
-    actstudypropAll.to_csv('data/actstudyprop_allacc.csv')
-    actrestudypropAll.to_csv('data/actrestudyprop_allacc.csv')
-    passtudypropAll.to_csv('data/passtudyprop_allacc.csv')
-    pasrestudypropAll.to_csv('data/pasrestudyprop_allacc.csv')
+    actstudypropAll.to_csv('data/actstudyprop_allaccdom.csv')
+    actrestudypropAll.to_csv('data/actrestudyprop_allaccdom.csv')
+    passtudypropAll.to_csv('data/passtudyprop_allaccdom.csv')
+    pasrestudypropAll.to_csv('data/pasrestudyprop_allaccdom.csv')
 else:
     # just load the existing data:
-    actstudypropAll = pd.read_csv('data/actstudyprop.csv')
-    actrestudypropAll = pd.read_csv('data/actrestudyprop.csv')
-    passtudypropAll = pd.read_csv('data/passtudyprop.csv')
-    pasrestudypropAll = pd.read_csv('data/pasrestudyprop.csv')
+    actstudypropAll = pd.read_csv('data/actstudyprop_allacc.csv')
+    actrestudypropAll = pd.read_csv('data/actrestudyprop_allacc.csv')
+    passtudypropAll = pd.read_csv('data/passtudyprop_allacc.csv')
+    pasrestudypropAll = pd.read_csv('data/pasrestudyprop_allacc.csv')
+
+    actstudypropAll = actstudypropAll[actstudypropAll['sub']>899]
+    actrestudypropAll = actrestudypropAll[actrestudypropAll['sub']>899]
+    passtudypropAll = passtudypropAll[passtudypropAll['sub']>899]
+    pasrestudypropAll = pasrestudypropAll[pasrestudypropAll['sub']>899]
 
 
 actstudyprop = downsample_timeseries(actstudypropAll, 100)

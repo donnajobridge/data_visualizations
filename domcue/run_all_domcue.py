@@ -61,8 +61,8 @@ for sub in subids:
     ''' change df to dict'''
     eyebehavedict=eyebehave.to_dict('records')
     ''' determine if non-loc viewing was on screen or offscreen'''
-    eyebehavedict=assign_screenview(eyebehavedict,'xstart','ystart','start')
-    eyebehavedict=assign_screenview(eyebehavedict,'xend','yend','end')
+    eyebehavedict=assign_screenview(eyebehavedict,'xstart','ystart','start',xmax, ymax)
+    eyebehavedict=assign_screenview(eyebehavedict,'xend','yend','end',xmax, ymax)
 
     '''adjust artifacts in eye data due to blinks'''
     new_previous_events=adjust_fix_before_blink(eyebehavedict)

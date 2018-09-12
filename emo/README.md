@@ -9,4 +9,4 @@ Line plots are created to show Precision and Recall scores as a function of emot
 A bar plot is also created with the same conditions showing the composite F1 score.
 
 *How to run:*
-To generate figures from behavioral data, go to terminal in the emo directory. From there, run "python run_emo.py"
+To generate figures from behavioral data, go to terminal in the emo directory. From there, run `python run_emo.py`
