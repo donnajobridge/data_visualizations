@@ -13,11 +13,13 @@ def get_cxt_figs(props_tidy):
     swarmfig=sns.swarmplot(x='locs', y='prop', hue='cond',
                    data=props_tidy, palette='Paired')
     plt.xticks((0,1,2),['Original', 'Updated', 'New'])
-    swarmfig.set_ylabel('Proportion of Responses', fontsize=20)
-    swarmfig.set_xlabel('Location Selection', fontsize=20)
-    swarmfig.tick_params(labelsize=16)
-    plt.legend(fontsize=12)
+    swarmfig.set_ylabel('Proportion of Responses', fontsize=16)
+    swarmfig.set_xlabel('Location Selection', fontsize=16)
+    swarmfig.tick_params(labelsize=14)
+    plt.legend(fontsize=14)
     plt.gca().legend().set_title('')
+    plt.title('Final Test Responses', fontsize=20)
+
     swarmfig=swarmfig.get_figure()
     plt.savefig('figs/loc_cond_swarm.png')
     plt.clf()
