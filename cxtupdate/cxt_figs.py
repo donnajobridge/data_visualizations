@@ -11,7 +11,7 @@ rcParams.update({'figure.autolayout': True})
 def get_cxt_figs(props_tidy):
     props_tidy['cond']=props_tidy['cond'].map({'act':'Active', 'pas':'Passive'})
     swarmfig=sns.swarmplot(x='locs', y='prop', hue='cond',
-                   data=props_tidy, palette='Paired')
+                   data=props_tidy, palette='GnBu_d')
     plt.xticks((0,1,2),['Original', 'Updated', 'New'])
     swarmfig.set_ylabel('Proportion of Responses', fontsize=16)
     swarmfig.set_xlabel('Location Selection', fontsize=16)
